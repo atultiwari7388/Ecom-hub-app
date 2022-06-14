@@ -8,6 +8,7 @@ import '../widgets/categories.widgets.home.view.dart';
 import '../widgets/search.widgets.home.view.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const String routeName = '/home-screen';
   const HomeScreen({Key? key}) : super(key: key);
 
   @override

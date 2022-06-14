@@ -1,3 +1,4 @@
+import 'package:ecom_hub/view/ProductDetailScreen/screen/popular_product_details.screen.view.dart';
 import 'package:flutter/material.dart';
 import '../../../common/widgets/section_title.widgets.common.dart';
 import '../../../utils/colors.utils.dart';
@@ -26,7 +27,13 @@ class PopularProducts extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(left: defaultPadding),
                 child: ProductCard(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => ProductDetailsScreen(),
+                      ),
+                    );
+                  },
                   image: "assets/images/product_0.png",
                   bgColor: index.isOdd
                       ? Color.fromARGB(255, 38, 97, 96)

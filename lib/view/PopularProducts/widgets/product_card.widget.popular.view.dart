@@ -60,7 +60,7 @@ class ProductCard extends StatelessWidget {
                 ),
                 const SizedBox(width: defaultPadding / 4),
                 Text(
-                  "\$" + price.toString(),
+                  "\₹" + price.toString(),
                   style: Theme.of(context).textTheme.subtitle2!.copyWith(
                         color: textColor,
                         fontWeight: FontWeight.bold,

@@ -1,4 +1,6 @@
+import 'package:ecom_hub/routes/app.routes.dart';
 import 'package:ecom_hub/utils/colors.utils.dart';
+import 'package:ecom_hub/view/auth/screens/signup.screen.auth.view.dart';
 import 'package:ecom_hub/view/home/screens/home.screen.home.view.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +25,8 @@ class MyApp extends StatelessWidget {
           bodyText2: TextStyle(color: Colors.black54),
         ),
       ),
-      home: HomeScreen(),
+      onGenerateRoute: (settings) => ongenerateRoute(settings),
+      home: SignUpScreen(),
     );
   }
 }
