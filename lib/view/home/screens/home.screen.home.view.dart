@@ -1,7 +1,9 @@
 import 'package:badges/badges.dart';
+import 'package:ecom_hub/provider/user.provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ecom_hub/utils/colors.utils.dart';
+import 'package:provider/provider.dart';
 import '../../NewArrival/screens/new_arrival.screens.newarrival.view.dart';
 import '../../PopularProducts/screens/popular_product.screens.popular.view.dart';
 import '../widgets/categories.widgets.home.view.dart';
@@ -18,6 +20,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context).user;
     return Scaffold(
       backgroundColor: kbgColor,
       appBar: AppBar(

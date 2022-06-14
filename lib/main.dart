@@ -1,16 +1,29 @@
+import 'package:ecom_hub/provider/user.provider.dart';
 import 'package:ecom_hub/routes/app.routes.dart';
 import 'package:ecom_hub/utils/colors.utils.dart';
 import 'package:ecom_hub/view/auth/screens/signup.screen.auth.view.dart';
-import 'package:ecom_hub/view/home/screens/home.screen.home.view.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
