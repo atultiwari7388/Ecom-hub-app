@@ -1,8 +1,7 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:ecom_hub/common/widgets/custom_button.widget.common.dart';
 import 'package:ecom_hub/utils/colors.utils.dart';
-import 'package:ecom_hub/utils/utils.dart';
 import 'package:ecom_hub/view/auth/screens/signup.screen.auth.view.dart';
+import 'package:ecom_hub/view/auth/services/auth.services.auth.view.dart';
 import 'package:ecom_hub/view/auth/widgets/custom_text_field.widgets.auth.view.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +14,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  AuthService _authService = AuthService();
   final _loginFormKey = GlobalKey<FormState>();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
@@ -24,6 +24,15 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+  }
+
+  //signin User
+  void signInUser() {
+    _authService.signInUser(
+      context: context,
+      userEmail: _emailController.text,
+      userPassword: _passwordController.text,
+    );
   }
 
   @override
@@ -71,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: defaultPadding * 2),
                   CustomButton(
                     text: "Login in",
-                    onTap: () {},
+                    onTap: signInUser,
                   ),
                   SizedBox(height: defaultPadding * 2),
                   GestureDetector(

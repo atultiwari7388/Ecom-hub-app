@@ -1,6 +1,7 @@
 import 'package:ecom_hub/common/widgets/custom_button.widget.common.dart';
 import 'package:ecom_hub/utils/colors.utils.dart';
 import 'package:ecom_hub/view/auth/screens/login.screen.auth.view.dart';
+import 'package:ecom_hub/view/auth/services/auth.services.auth.view.dart';
 import 'package:ecom_hub/view/auth/widgets/custom_text_field.widgets.auth.view.dart';
 import 'package:flutter/material.dart';
 
@@ -13,10 +14,13 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final AuthService _authService = AuthService();
   final _signUpFormKey = GlobalKey<FormState>();
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -24,6 +28,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+  }
+
+  //signup User
+  void signUpUser() {
+    _authService.signUpUser(
+      context: context,
+      userName: _nameController.text,
+      userEmail: _emailController.text,
+      userPassword: _passwordController.text,
+    );
   }
 
   @override
@@ -76,10 +90,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     keyboardType: TextInputType.visiblePassword,
                   ),
                   SizedBox(height: defaultPadding * 2),
-                  CustomButton(
-                    text: "Sign Up",
-                    onTap: () {},
-                  ),
+                  _isLoading
+                      ? CircularProgressIndicator(color: kPrimaryColor)
+                      : CustomButton(
+                          text: "Sign Up",
+                          onTap: () {
+                            if (_signUpFormKey.currentState!.validate()) {
+                              signUpUser();
+                              setState(() {
+                                _isLoading = true;
+                              });
+                            }
+                          },
+                        ),
                   SizedBox(height: defaultPadding * 2),
                   GestureDetector(
                     onTap: () {
