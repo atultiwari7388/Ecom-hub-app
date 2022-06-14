@@ -2,6 +2,8 @@ import 'package:ecom_hub/provider/user.provider.dart';
 import 'package:ecom_hub/routes/app.routes.dart';
 import 'package:ecom_hub/utils/colors.utils.dart';
 import 'package:ecom_hub/view/auth/screens/signup.screen.auth.view.dart';
+import 'package:ecom_hub/view/auth/services/auth.services.auth.view.dart';
+import 'package:ecom_hub/view/home/screens/home.screen.home.view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,6 +27,13 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+  final AuthService authService = AuthService();
+  @override
+  void initState() {
+    super.initState();
+    authService.getUserData(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -39,7 +48,9 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       onGenerateRoute: (settings) => ongenerateRoute(settings),
-      home: SignUpScreen(),
+      home: Provider.of<UserProvider>(context).user.token.isNotEmpty
+          ? const HomeScreen()
+          : SignUpScreen(),
     );
   }
 }

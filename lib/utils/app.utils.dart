@@ -6,6 +6,7 @@ class AppConstants {
   static const double APP_VERSION = 0.1;
 
   //app base urls
+  static const String App_Url = "https://ecom-backend-node-api.herokuapp.com/";
   static const String BASE_URL = "https://ecom-backend-node-api.herokuapp.com";
 
   // app token

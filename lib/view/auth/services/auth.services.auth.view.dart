@@ -134,4 +134,50 @@ class AuthService {
       );
     }
   }
+
+  //get user data
+  //get the user from the phone memory
+
+  void getUserData(BuildContext context) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? token = prefs.getString(AppConstants.TOKEN);
+
+      if (token == null) {
+        prefs.setString(AppConstants.TOKEN, "");
+      }
+
+      var tokenRes = await http.post(
+        Uri.parse(AppConstants.TOKEN_IS_VALID),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          AppConstants.TOKEN: token!,
+        },
+      );
+
+      var response = jsonDecode(tokenRes.body);
+
+      if (response == true) {
+        //get user data
+        http.Response userResponse = await http.get(
+          Uri.parse(AppConstants.App_Url),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            AppConstants.TOKEN: token,
+          },
+        );
+
+        var userProvider = Provider.of<UserProvider>(context, listen: false);
+        userProvider.setUser(userResponse.body);
+      }
+    } catch (e) {
+      print(e.toString());
+      showSnackBarMessage(
+        context,
+        "Error",
+        e.toString(),
+        ContentType.warning,
+      );
+    }
+  }
 }
