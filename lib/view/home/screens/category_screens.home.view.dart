@@ -50,47 +50,59 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       ),
       body: productCategoryList == null
           ? Center(child: CircularProgressIndicator())
-          : Column(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 5, right: 5, top: 5),
-                    child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.68,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                      ),
-                      itemCount: productCategoryList?.length ?? 0,
-                      itemBuilder: (BuildContext context, int index) {
-                        final productData = productCategoryList![index];
-                        return ProductCard(
-                          title: productData.name,
-                          image: productData.images[0],
-                          bgColor: index.isEven
-                              ? Color.fromARGB(255, 38, 97, 96)
-                              : Color.fromARGB(255, 222, 234, 234),
-                          price: double.parse(productData.price.toString()),
-                          onTap: () {
-                            Navigator.pushNamed(
-                              context,
-                              ProductDetailsScreen.routeName,
-                              arguments: productData,
+          : productCategoryList!.isEmpty
+              ? Center(
+                  child: Text(
+                    widget.category + " Products not available!",
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6!
+                        .copyWith(color: kPrimaryColor),
+                  ),
+                )
+              : Column(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.only(left: 5, right: 5, top: 5),
+                        child: GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 0.68,
+                            mainAxisSpacing: 10,
+                            crossAxisSpacing: 10,
+                          ),
+                          itemCount: productCategoryList?.length ?? 0,
+                          itemBuilder: (BuildContext context, int index) {
+                            final productData = productCategoryList![index];
+                            return ProductCard(
+                              title: productData.name,
+                              image: productData.images[0],
+                              bgColor: index.isEven
+                                  ? Color.fromARGB(255, 38, 97, 96)
+                                  : Color.fromARGB(255, 222, 234, 234),
+                              price: double.parse(productData.price.toString()),
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  ProductDetailsScreen.routeName,
+                                  arguments: productData,
+                                );
+                              },
+                              containerBgColor: index.isOdd
+                                  ? Color.fromARGB(255, 38, 97, 96)
+                                  : Color.fromARGB(255, 222, 234, 234),
+                              textColor:
+                                  index.isEven ? Colors.black : Colors.white,
                             );
                           },
-                          containerBgColor: index.isOdd
-                              ? Color.fromARGB(255, 38, 97, 96)
-                              : Color.fromARGB(255, 222, 234, 234),
-                          textColor: index.isEven ? Colors.black : Colors.white,
-                        );
-                      },
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
-            ),
     );
   }
 }

@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:getwidget/components/shimmer/gf_shimmer.dart';
 
 import '../../../utils/colors.utils.dart';
 
@@ -36,20 +38,36 @@ class ProductCard extends StatelessWidget {
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //image section
-            Container(
-              width: double.maxFinite,
-              decoration: BoxDecoration(
-                color: bgColor,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(defaultPadding),
-                ),
-              ),
-              child: Image.network(
-                image,
-                height: 130,
-                fit: BoxFit.cover,
-              ),
-            ),
+            CachedNetworkImage(
+                imageUrl: image,
+                imageBuilder: (context, imageProvider) => Container(
+                      height: 130,
+                      width: double.maxFinite,
+                      decoration: BoxDecoration(
+                        color: bgColor,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(defaultPadding),
+                        ),
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                placeholder: (context, url) => GFShimmer(
+                      mainColor: kPrimaryColor,
+                      secondaryColor: kPrimaryLightColor,
+                      child: Container(
+                        height: 130,
+                        width: double.maxFinite,
+                        decoration: BoxDecoration(
+                          color: bgColor,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(defaultPadding),
+                          ),
+                        ),
+                      ),
+                    )),
             const SizedBox(height: defaultPadding / 2),
             Row(
               children: [

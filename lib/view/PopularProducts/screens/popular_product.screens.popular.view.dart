@@ -1,7 +1,5 @@
-import 'package:ecom_hub/view/PopularProducts/services/popular_product.service.dart';
 import 'package:flutter/material.dart';
 import '../../../common/widgets/section_title.widgets.common.dart';
-import '../../../models/product.models.dart';
 import '../../../utils/colors.utils.dart';
 import '../widgets/product_card.widget.popular.view.dart';
 
