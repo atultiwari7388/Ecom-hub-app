@@ -1,10 +1,16 @@
+import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecom_hub/common/widgets/custom_bottom_button.widgets.dart';
 import 'package:ecom_hub/models/product.models.dart';
 import 'package:ecom_hub/utils/colors.utils.dart';
+import 'package:ecom_hub/view/ProductDetailScreen/services/product_details.services.product_details.view.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
-class ProductDetailsScreen extends StatelessWidget {
+import '../../../provider/user.provider.dart';
+
+class ProductDetailsScreen extends StatefulWidget {
   static const String routeName = '/product-details-screen';
 
   const ProductDetailsScreen({Key? key, required this.product})
@@ -12,17 +18,51 @@ class ProductDetailsScreen extends StatelessWidget {
   final ProductModel product;
 
   @override
+  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
+}
+
+class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  ProductDetailsService productDetailsService = ProductDetailsService();
+
+  void addToCart() {
+    productDetailsService.addToCart(
+      context: context,
+      productModel: widget.product,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final userCartLength = Provider.of<UserProvider>(context).user.cart.length;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: const BackButton(color: Colors.black),
+        actions: [
+          Center(
+            child: Badge(
+              badgeColor: kPrimaryColor,
+              badgeContent: Text(
+                userCartLength.toString(),
+                style: TextStyle(color: Colors.white),
+              ),
+              animationDuration: Duration(milliseconds: 300),
+              child: Icon(
+                Icons.shopping_cart_outlined,
+                color: Colors.black,
+                size: 28,
+              ),
+            ),
+          ),
+          const SizedBox(width: 20),
+        ],
       ),
       body: Column(
         children: [
           CachedNetworkImage(
-            imageUrl: product.images[0],
+            imageUrl: widget.product.images[0],
             imageBuilder: (context, imageProvider) => Container(
               height: MediaQuery.of(context).size.height * 0.4,
               decoration: BoxDecoration(
@@ -60,13 +100,13 @@ class ProductDetailsScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            product.name,
+                            widget.product.name,
                             style: Theme.of(context).textTheme.headline6,
                           ),
                         ),
                         SizedBox(width: defaultPadding),
                         Text(
-                          "\₹" + product.price.toString(),
+                          "\₹" + widget.product.price.toString(),
                           style:
                               Theme.of(context).textTheme.subtitle2!.copyWith(
                                     color: kPrimaryColor,
@@ -79,7 +119,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     Padding(
                       padding:
                           const EdgeInsets.symmetric(vertical: defaultPadding),
-                      child: Text(product.description),
+                      child: Text(widget.product.description),
                     ),
                     SizedBox(height: defaultPadding),
                   ],
@@ -89,19 +129,9 @@ class ProductDetailsScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: Container(
-        height: 50,
-        padding:
-            const EdgeInsets.only(left: defaultPadding, right: defaultPadding),
-        child: ElevatedButton(
-          child: Text("Add To cart"),
-          style: ElevatedButton.styleFrom(
-            primary: kPrimaryColor,
-            shape: StadiumBorder(),
-            elevation: 0,
-          ),
-          onPressed: () {},
-        ),
+      bottomNavigationBar: CustomBottomButtonWidget(
+        text: "Add to cart",
+        onPressed: addToCart,
       ),
     );
   }

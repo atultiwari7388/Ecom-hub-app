@@ -34,28 +34,28 @@ class _SearchFormWidgetState extends State<SearchFormWidget> {
             padding: const EdgeInsets.all(12.0),
             child: SvgPicture.asset("assets/icons/Search.svg"),
           ),
-          suffixIcon: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: defaultPadding,
-              vertical: defaultPadding / 2,
-            ),
-            child: SizedBox(
-              height: 48,
-              width: 48,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: kPrimaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(defaultBorderRadius),
-                    ),
-                  ),
-                ),
-                onPressed: () {},
-                child: SvgPicture.asset("assets/icons/Filter.svg"),
-              ),
-            ),
-          ),
+          // suffixIcon: Padding(
+          //   padding: const EdgeInsets.symmetric(
+          //     horizontal: defaultPadding,
+          //     vertical: defaultPadding / 2,
+          //   ),
+          //   child: SizedBox(
+          //     height: 48,
+          //     width: 48,
+          //     child: ElevatedButton(
+          //       style: ElevatedButton.styleFrom(
+          //         primary: kPrimaryColor,
+          //         shape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.all(
+          //             Radius.circular(defaultBorderRadius),
+          //           ),
+          //         ),
+          //       ),
+          //       onPressed: () {},
+          //       child: SvgPicture.asset("assets/icons/Filter.svg"),
+          //     ),
+          //   ),
+          // ),
         ),
       ),
     );

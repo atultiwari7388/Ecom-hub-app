@@ -32,6 +32,7 @@ class AuthService {
         address: "",
         token: "",
         type: "",
+        cart: [],
       );
 
       //create post request
