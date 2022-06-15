@@ -19,34 +19,6 @@ class AppConstants {
 
   //for category Products
 
-  static const String GET_CATEGORIES = "$BASE_URL/api/products?category";
-  static const String GET_FASHION_CATEGORIES =
-      "$BASE_URL/api/products?category=Fashion";
-
-  static const String GET_MOBILES_CATEGORIES =
-      "$BASE_URL/api/products?category=Mobiles";
-
-  static const String GET_ELECTRONICS_CATEGORIES =
-      "$BASE_URL/api/products?category=Electronics";
-
-  static const String GET_APPLIANCES_CATEGORIES =
-      "$BASE_URL/api/products?category=Appliances";
-
-  static const String GET_BOOKS_CATEGORIES =
-      "$BASE_URL/api/products?category=Books";
-
-  static const String GET_HOME_CATEGORIES =
-      "$BASE_URL/api/products?category=Home";
-
-  static const String GET_BEAUTY_CATEGORIES =
-      "$BASE_URL/api/products?category=Beauty";
-
-  static const String GET_FURNITURE_CATEGORIES =
-      "$BASE_URL/api/products?category=Furniture";
-
-  static const String GET_SPORTS_CATEGORIES =
-      "$BASE_URL/api/products?category=Sports";
-
   //for cart
   static const String ADD_TO_CART = "$BASE_URL/api/add-to-cart";
   static const String REMOVE_FROM_CART = "$BASE_URL/api/remove-from-cart";

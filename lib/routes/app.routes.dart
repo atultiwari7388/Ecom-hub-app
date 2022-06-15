@@ -1,4 +1,7 @@
+import 'package:ecom_hub/models/product.models.dart';
+import 'package:ecom_hub/view/ProductDetailScreen/screen/product_details.screen.view.dart';
 import 'package:ecom_hub/view/auth/screens/signup.screen.auth.view.dart';
+import 'package:ecom_hub/view/home/screens/category_screens.home.view.dart';
 import 'package:ecom_hub/view/home/screens/home.screen.home.view.dart';
 
 import 'package:flutter/material.dart';
@@ -21,6 +24,20 @@ Route<dynamic> ongenerateRoute(RouteSettings settings) {
     case HomeScreen.routeName:
       return MaterialPageRoute(
         builder: (context) => HomeScreen(),
+      );
+
+    case CategoriesScreen.routeName:
+      var category = settings.arguments as String;
+      return MaterialPageRoute(
+        builder: (context) => CategoriesScreen(category: category),
+      );
+
+    case ProductDetailsScreen.routeName:
+      var product = settings.arguments as ProductModel;
+      return MaterialPageRoute(
+        builder: (context) => ProductDetailsScreen(
+          product: product,
+        ),
       );
 
     default:
