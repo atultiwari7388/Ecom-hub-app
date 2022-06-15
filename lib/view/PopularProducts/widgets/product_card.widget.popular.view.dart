@@ -16,7 +16,7 @@ class ProductCard extends StatelessWidget {
 
   final String image, title;
   final Color bgColor, containerBgColor, textColor;
-  final int price;
+  final double price;
   final VoidCallback onTap;
 
   @override
@@ -24,7 +24,7 @@ class ProductCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 150,
+        width: 160,
         padding: EdgeInsets.all(defaultPadding / 2),
         decoration: BoxDecoration(
           color: containerBgColor,
@@ -44,9 +44,10 @@ class ProductCard extends StatelessWidget {
                   Radius.circular(defaultPadding),
                 ),
               ),
-              child: Image.asset(
+              child: Image.network(
                 image,
-                height: 132,
+                height: 130,
+                fit: BoxFit.cover,
               ),
             ),
             const SizedBox(height: defaultPadding / 2),
@@ -56,6 +57,7 @@ class ProductCard extends StatelessWidget {
                   child: Text(
                     title,
                     style: TextStyle(color: textColor),
+                    maxLines: 2,
                   ),
                 ),
                 const SizedBox(width: defaultPadding / 4),

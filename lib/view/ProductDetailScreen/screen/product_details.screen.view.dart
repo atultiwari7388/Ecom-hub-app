@@ -1,8 +1,13 @@
+import 'package:ecom_hub/models/product.models.dart';
 import 'package:ecom_hub/utils/colors.utils.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-  const ProductDetailsScreen({Key? key}) : super(key: key);
+  static const String routeName = '/product-details-screen';
+
+  const ProductDetailsScreen({Key? key, required this.product})
+      : super(key: key);
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +19,12 @@ class ProductDetailsScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Image.asset(
-            "assets/images/product_0.png",
+          Image.network(
+            product.images[0],
             height: MediaQuery.of(context).size.height * 0.4,
             fit: BoxFit.cover,
           ),
-          SizedBox(height: defaultPadding * 1.2),
+          SizedBox(height: defaultPadding),
           Expanded(
             child: Container(
               padding: const EdgeInsets.fromLTRB(
@@ -43,13 +48,13 @@ class ProductDetailsScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            "Product Title",
+                            product.name,
                             style: Theme.of(context).textTheme.headline6,
                           ),
                         ),
                         SizedBox(width: defaultPadding),
                         Text(
-                          "\₹" + "200",
+                          "\₹" + product.price.toString(),
                           style:
                               Theme.of(context).textTheme.subtitle2!.copyWith(
                                     color: kPrimaryColor,
@@ -62,31 +67,29 @@ class ProductDetailsScreen extends StatelessWidget {
                     Padding(
                       padding:
                           const EdgeInsets.symmetric(vertical: defaultPadding),
-                      child: Text(
-                          "Dolor lorem stet rebum invidunt ut, takimata dolor et aliquyam dolor labore sit eirmod sadipscing labore, et kasd dolor dolor justo dolore. Sed labore sanctus duo dolor takimata. Accusam eos takimata sit clita, dolores dolore sed sit ea takimata invidunt eos, et at justo sadipscing et sadipscing et. Lorem amet."),
+                      child: Text(product.description),
                     ),
-                    SizedBox(height: defaultPadding * 2),
-                    Center(
-                      child: SizedBox(
-                        width: 200,
-                        height: 48,
-                        child: ElevatedButton(
-                          child: Text("Add To cart"),
-                          style: ElevatedButton.styleFrom(
-                            primary: kPrimaryColor,
-                            shape: StadiumBorder(),
-                            elevation: 0,
-                          ),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ),
+                    SizedBox(height: defaultPadding),
                   ],
                 ),
               ),
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: Container(
+        height: 50,
+        padding:
+            const EdgeInsets.only(left: defaultPadding, right: defaultPadding),
+        child: ElevatedButton(
+          child: Text("Add To cart"),
+          style: ElevatedButton.styleFrom(
+            primary: kPrimaryColor,
+            shape: StadiumBorder(),
+            elevation: 0,
+          ),
+          onPressed: () {},
+        ),
       ),
     );
   }
