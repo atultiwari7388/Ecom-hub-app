@@ -1,8 +1,9 @@
 import 'package:ecom_hub/common/widgets/section_title.widgets.common.dart';
+import 'package:ecom_hub/models/product.models.dart';
+import 'package:ecom_hub/view/NewArrival/services/deal_of_the_day.service.screens.deals.view.dart';
 import 'package:flutter/material.dart';
 import '../../../utils/colors.utils.dart';
 import '../../PopularProducts/widgets/product_card.widget.popular.view.dart';
-import '../../ProductDetailScreen/screen/product_details.screen.view.dart';
 
 class NewArrival extends StatefulWidget {
   const NewArrival({
@@ -14,13 +15,27 @@ class NewArrival extends StatefulWidget {
 }
 
 class _NewArrivalState extends State<NewArrival> {
+  DealsOfTheDayServices dealsOfTheDayServices = DealsOfTheDayServices();
+  ProductModel? dealOfTheDay;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDealOfTheDayServices();
+  }
+
+  void fetchDealOfTheDayServices() async {
+    dealOfTheDay = await dealsOfTheDayServices.fetchDealOfDay(context: context);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SectionTitle(
           onTap: () {},
-          title: 'New Arrived',
+          title: 'Deal of the Day',
         ),
         Container(
           height: 230,

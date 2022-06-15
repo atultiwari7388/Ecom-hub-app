@@ -2,16 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../utils/colors.utils.dart';
+import '../../search/screens/search.screen.search.view.dart';
 
-class SearchFormWidget extends StatelessWidget {
+class SearchFormWidget extends StatefulWidget {
   const SearchFormWidget({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<SearchFormWidget> createState() => _SearchFormWidgetState();
+}
+
+class _SearchFormWidgetState extends State<SearchFormWidget> {
+  void navigateToSearchScreen(String query) {
+    Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Form(
       child: TextFormField(
+        onFieldSubmitted: navigateToSearchScreen,
         decoration: InputDecoration(
           hintText: "Search Items...",
           filled: true,

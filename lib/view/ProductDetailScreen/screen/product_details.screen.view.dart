@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecom_hub/models/product.models.dart';
 import 'package:ecom_hub/utils/colors.utils.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   static const String routeName = '/product-details-screen';
@@ -19,10 +21,20 @@ class ProductDetailsScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Image.network(
-            product.images[0],
-            height: MediaQuery.of(context).size.height * 0.4,
-            fit: BoxFit.cover,
+          CachedNetworkImage(
+            imageUrl: product.images[0],
+            imageBuilder: (context, imageProvider) => Container(
+              height: MediaQuery.of(context).size.height * 0.4,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: imageProvider,
+                ),
+              ),
+            ),
+            placeholder: (context, url) => Container(
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: Lottie.asset("assets/loading.json"),
+            ),
           ),
           SizedBox(height: defaultPadding),
           Expanded(

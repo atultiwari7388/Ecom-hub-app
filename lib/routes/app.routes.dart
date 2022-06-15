@@ -7,6 +7,7 @@ import 'package:ecom_hub/view/home/screens/home.screen.home.view.dart';
 import 'package:flutter/material.dart';
 
 import '../view/auth/screens/login.screen.auth.view.dart';
+import '../view/search/screens/search.screen.search.view.dart';
 
 Route<dynamic> ongenerateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -37,6 +38,15 @@ Route<dynamic> ongenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => ProductDetailsScreen(
           product: product,
+        ),
+      );
+
+    case SearchScreen.routeName:
+      var searchQuery = settings.arguments as String;
+      return MaterialPageRoute(
+        settings: settings,
+        builder: (_) => SearchScreen(
+          searchQuery: searchQuery,
         ),
       );
 
