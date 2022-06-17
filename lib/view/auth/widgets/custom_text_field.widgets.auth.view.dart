@@ -10,11 +10,13 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     required this.hintText,
     required this.imagePath,
+    this.svgImageColor,
   }) : super(key: key);
 
   final TextEditingController controller;
   final TextInputType keyboardType;
   final String hintText, imagePath;
+  final Color? svgImageColor;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,7 @@ class CustomTextField extends StatelessWidget {
                 onPressed: () {},
                 child: SvgPicture.asset(
                   imagePath,
-                  color: kPrimaryColor,
+                  color: svgImageColor,
                 ),
               ),
             ),

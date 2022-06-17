@@ -69,10 +69,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     hintText: 'Email',
                     imagePath: 'assets/icons/email.svg',
                     keyboardType: TextInputType.emailAddress,
+                    svgImageColor: kPrimaryColor,
                   ),
                   SizedBox(height: 10),
                   CustomTextField(
                     controller: _passwordController,
+                    svgImageColor: kPrimaryColor,
                     hintText: 'Password',
                     imagePath: 'assets/icons/password.svg',
                     keyboardType: TextInputType.visiblePassword,
@@ -80,7 +82,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: defaultPadding * 2),
                   CustomButton(
                     text: "Login in",
-                    onTap: signInUser,
+                    onTap: () {
+                      if (_loginFormKey.currentState!.validate()) {
+                        signInUser();
+                      }
+                    },
                   ),
                   SizedBox(height: defaultPadding * 2),
                   GestureDetector(

@@ -22,6 +22,8 @@ class AppConstants {
   //for cart
   static const String ADD_TO_CART = "$BASE_URL/api/add-to-cart";
   static const String REMOVE_FROM_CART = "$BASE_URL/api/remove-from-cart";
+
+  //for product rating
   static const String RATE_PRODUCTS = "$BASE_URL/api/rate-product";
 
   //for search products

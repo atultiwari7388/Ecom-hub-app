@@ -39,7 +39,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: const BackButton(color: Colors.black),
+        iconTheme: ThemeData().iconTheme.copyWith(color: kPrimaryColor),
+        leading: InkWell(
+          onTap: () => Navigator.pop(context),
+          child: Icon(Icons.arrow_back_ios),
+        ),
         title: Text(
           widget.category,
           style: Theme.of(context)

@@ -1,9 +1,9 @@
+import 'package:ecom_hub/common/widgets/bottom_bar.widgets.dart';
 import 'package:ecom_hub/provider/user.provider.dart';
 import 'package:ecom_hub/routes/app.routes.dart';
 import 'package:ecom_hub/utils/colors.utils.dart';
 import 'package:ecom_hub/view/auth/screens/signup.screen.auth.view.dart';
 import 'package:ecom_hub/view/auth/services/auth.services.auth.view.dart';
-import 'package:ecom_hub/view/home/screens/home.screen.home.view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
       ),
       onGenerateRoute: (settings) => ongenerateRoute(settings),
       home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? const HomeScreen()
+          ? const BottomBar()
           : SignUpScreen(),
     );
   }
