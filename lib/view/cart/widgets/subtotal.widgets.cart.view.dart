@@ -22,7 +22,7 @@ class CartSubTotal extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "Subtotal",
+            "Subtotal :",
             style: Theme.of(context)
                 .textTheme
                 .subtitle2!

@@ -71,6 +71,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(height: defaultPadding * 2),
                   CustomTextField(
                     controller: _nameController,
+                    svgImageColor: kPrimaryColor,
                     hintText: 'Name',
                     imagePath: 'assets/icons/person.svg',
                     keyboardType: TextInputType.text,
@@ -78,6 +79,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(height: 10),
                   CustomTextField(
                     controller: _emailController,
+                    svgImageColor: kPrimaryColor,
                     hintText: 'Email',
                     imagePath: 'assets/icons/email.svg',
                     keyboardType: TextInputType.emailAddress,
@@ -85,6 +87,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(height: 10),
                   CustomTextField(
                     controller: _passwordController,
+                    svgImageColor: kPrimaryColor,
                     hintText: 'Password',
                     imagePath: 'assets/icons/password.svg',
                     keyboardType: TextInputType.visiblePassword,

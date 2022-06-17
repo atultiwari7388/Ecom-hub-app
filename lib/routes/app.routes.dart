@@ -1,5 +1,7 @@
+import 'package:ecom_hub/common/widgets/bottom_bar.widgets.dart';
 import 'package:ecom_hub/models/product.models.dart';
 import 'package:ecom_hub/view/ProductDetailScreen/screen/product_details.screen.view.dart';
+import 'package:ecom_hub/view/address/screens/address.screens.address.view.dart';
 import 'package:ecom_hub/view/auth/screens/signup.screen.auth.view.dart';
 import 'package:ecom_hub/view/home/screens/category_screens.home.view.dart';
 import 'package:ecom_hub/view/home/screens/home.screen.home.view.dart';
@@ -27,6 +29,11 @@ Route<dynamic> ongenerateRoute(RouteSettings settings) {
         builder: (context) => HomeScreen(),
       );
 
+    case BottomBar.routeName:
+      return MaterialPageRoute(
+        builder: (context) => BottomBar(),
+      );
+
     case CategoriesScreen.routeName:
       var category = settings.arguments as String;
       return MaterialPageRoute(
@@ -48,6 +55,13 @@ Route<dynamic> ongenerateRoute(RouteSettings settings) {
         builder: (_) => SearchScreen(
           searchQuery: searchQuery,
         ),
+      );
+
+    case AddressScreen.routeName:
+      var totalAmount = settings.arguments as String;
+      return MaterialPageRoute(
+        settings: settings,
+        builder: (_) => AddressScreen(totalAmount: totalAmount),
       );
 
     default:

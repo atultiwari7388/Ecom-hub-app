@@ -28,10 +28,11 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          onPressed: () {},
-          icon: SvgPicture.asset("assets/icons/menu.svg"),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {},
+        //   icon: SvgPicture.asset("assets/icons/menu.svg"),
+        // ),
+        centerTitle: true,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -43,28 +44,33 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         actions: [
-          GestureDetector(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => CartScreen(),
-              ),
-            ),
-            child: Center(
-              child: Badge(
-                badgeColor: kPrimaryColor,
-                badgeContent: Text(
-                  userCartLength.toString(),
-                  style: TextStyle(color: Colors.white),
-                ),
-                animationDuration: Duration(milliseconds: 300),
-                child: Icon(
-                  Icons.shopping_cart_outlined,
-                  color: Colors.black,
-                  size: 28,
-                ),
-              ),
-            ),
+          // GestureDetector(
+          //   onTap: () => Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (_) => CartScreen(),
+          //     ),
+          //   ),
+          //   child: Center(
+          //     child: Badge(
+          //       badgeColor: kPrimaryColor,
+          //       badgeContent: Text(
+          //         userCartLength.toString(),
+          //         style: TextStyle(color: Colors.white),
+          //       ),
+          //       animationDuration: Duration(milliseconds: 300),
+          //       child: Icon(
+          //         Icons.shopping_cart_outlined,
+          //         color: Colors.black,
+          //         size: 28,
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          //
+          SvgPicture.asset(
+            "assets/icons/Notification.svg",
+            color: Colors.black54,
           ),
           const SizedBox(width: 20),
         ],
@@ -99,8 +105,8 @@ class _HomeScreenState extends State<HomeScreen> {
               //new Arrival section
               SizedBox(height: defaultPadding),
               //new arrival
-              NewArrival(),
-              SizedBox(height: defaultPadding),
+              // NewArrival(),
+              // SizedBox(height: defaultPadding),
               PopularProducts(),
             ],
           ),

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../provider/user.provider.dart';
+import '../../address/screens/address.screens.address.view.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -15,12 +16,25 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  navigateToAddressScreen(int sum) {
+    Navigator.of(context).pushNamed(
+      AddressScreen.routeName,
+      arguments: sum.toString(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context).user;
+    int sum = 0;
+    //map through the cart items and add the price to the sum
 
-    print(MediaQuery.of(context).size.height.toString());
-    print(MediaQuery.of(context).size.width.toString());
+    user.cart
+        .map((e) => sum += e['quantity'] * e["product"]["price"] as int)
+        .toList();
+    // double deliveryFee = 50.20;
+
+    // double totalPrice = sum + deliveryFee;
 
     return Scaffold(
       appBar: AppBar(
@@ -35,10 +49,10 @@ class _CartScreenState extends State<CartScreen> {
         iconTheme: ThemeData().iconTheme.copyWith(color: kPrimaryColor),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: Icon(Icons.arrow_back_ios),
-        ),
+        // leading: GestureDetector(
+        //   onTap: () => Navigator.pop(context),
+        //   child: Icon(Icons.arrow_back_ios),
+        // ),
       ),
       body: ListView.builder(
         itemCount: user.cart.length,
@@ -46,21 +60,23 @@ class _CartScreenState extends State<CartScreen> {
           return CartProductData(index: index);
         },
       ),
-      bottomNavigationBar: Container(
-        height: 100,
-        margin: EdgeInsets.only(left: 10, right: 10, top: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            CartSubTotal(),
-            SizedBox(height: 5),
-            CustomBottomButtonWidget(
-              text: "Checkout",
-              onPressed: () {},
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: user.cart.length > 0
+          ? Container(
+              height: 100,
+              margin: EdgeInsets.only(left: 10, right: 10, top: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  CartSubTotal(),
+                  SizedBox(height: 5),
+                  CustomBottomButtonWidget(
+                    text: "Checkout",
+                    onPressed: () => navigateToAddressScreen(sum),
+                  ),
+                ],
+              ),
+            )
+          : Container(),
     );
   }
 }

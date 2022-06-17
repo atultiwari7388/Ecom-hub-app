@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:ecom_hub/common/widgets/bottom_bar.widgets.dart';
 import 'package:ecom_hub/models/users.models.dart';
 import 'package:ecom_hub/provider/user.provider.dart';
 import 'package:ecom_hub/utils/app.utils.dart';
 import 'package:ecom_hub/utils/error_handle.utils.dart';
 import 'package:ecom_hub/utils/utils.dart';
 import 'package:ecom_hub/view/auth/screens/login.screen.auth.view.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -59,11 +61,13 @@ class AuthService {
 
             //Navigate to login screen
 
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              LoginScreen.routeName,
-              (route) => false,
-            );
+            Navigator.pushNamed(context, LoginScreen.routeName);
+
+            // Navigator.pushNamedAndRemoveUntil(
+            //   context,
+            //   BottomBar.routeName,
+            //   (route) => false,
+            // );
           });
       // print(response.body);
     } catch (e) {
@@ -117,9 +121,14 @@ class AuthService {
           );
 
           //Navigate to home Page
+          // Navigator.pushNamedAndRemoveUntil(
+          //   context,
+          //   BottomBar.routeName,
+          //   (route) => false,
+          // );
           Navigator.pushNamedAndRemoveUntil(
             context,
-            HomeScreen.routeName,
+            BottomBar.routeName,
             (route) => false,
           );
 
