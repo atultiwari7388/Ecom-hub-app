@@ -1,4 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:ecom_hub/common/widgets/custom_button.widget.common.dart';
 import 'package:ecom_hub/provider/user.provider.dart';
 import 'package:ecom_hub/utils/colors.utils.dart';
 import 'package:ecom_hub/utils/utils.dart';
@@ -105,6 +106,7 @@ class _AddressScreenState extends State<AddressScreen> {
     double totalPrice = sum + deliveryFee;
 
     return Scaffold(
+      // backgroundColor: Colors.red,
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(
@@ -302,6 +304,10 @@ class _AddressScreenState extends State<AddressScreen> {
                     ),
                   ),
 
+                  CustomButton(
+                    text: "Cash on Delivery",
+                    onTap: () => payFinalAmount(userAddress),
+                  ),
                   SizedBox(height: defaultPadding * 2),
                 ],
               ),

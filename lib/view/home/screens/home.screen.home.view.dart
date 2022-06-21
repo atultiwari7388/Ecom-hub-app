@@ -1,12 +1,8 @@
-import 'package:badges/badges.dart';
-import 'package:ecom_hub/view/cart/screens/cart.screen.cart.view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ecom_hub/utils/colors.utils.dart';
 import 'package:provider/provider.dart';
-
 import '../../../provider/user.provider.dart';
-import '../../NewArrival/screens/new_arrival.screens.newarrival.view.dart';
 import '../../PopularProducts/screens/popular_product.screens.popular.view.dart';
 import '../widgets/categories.widgets.home.view.dart';
 import '../widgets/search.widgets.home.view.dart';
