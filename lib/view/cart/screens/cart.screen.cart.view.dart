@@ -4,7 +4,6 @@ import 'package:ecom_hub/view/cart/widgets/cart_product_data.widgets.cart.view.d
 import 'package:ecom_hub/view/cart/widgets/subtotal.widgets.cart.view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../provider/user.provider.dart';
 import '../../address/screens/address.screens.address.view.dart';
 

@@ -1,13 +1,13 @@
 import 'package:ecom_hub/common/widgets/bottom_bar.widgets.dart';
 import 'package:ecom_hub/models/product.models.dart';
 import 'package:ecom_hub/view/ProductDetailScreen/screen/product_details.screen.view.dart';
+import 'package:ecom_hub/view/account/screens/account.screens.account.view.dart';
 import 'package:ecom_hub/view/address/screens/address.screens.address.view.dart';
 import 'package:ecom_hub/view/auth/screens/signup.screen.auth.view.dart';
 import 'package:ecom_hub/view/home/screens/category_screens.home.view.dart';
 import 'package:ecom_hub/view/home/screens/home.screen.home.view.dart';
-
 import 'package:flutter/material.dart';
-
+import '../view/Orders/screens/orders.screens.orders.view.dart';
 import '../view/auth/screens/login.screen.auth.view.dart';
 import '../view/search/screens/search.screen.search.view.dart';
 
@@ -62,6 +62,18 @@ Route<dynamic> ongenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         settings: settings,
         builder: (_) => AddressScreen(totalAmount: totalAmount),
+      );
+
+    case AccountScreen.routeName:
+      return MaterialPageRoute(
+        settings: settings,
+        builder: (_) => AccountScreen(),
+      );
+
+    case OrderScreen.routeName:
+      return MaterialPageRoute(
+        settings: settings,
+        builder: (_) => OrderScreen(),
       );
 
     default:

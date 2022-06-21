@@ -6,7 +6,6 @@ import 'package:ecom_hub/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-
 import '../../../provider/user.provider.dart';
 import '../../../utils/error_handle.utils.dart';
 

@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:ecom_hub/utils/colors.utils.dart';
+import 'package:ecom_hub/view/account/screens/account.screens.account.view.dart';
 import 'package:ecom_hub/view/cart/screens/cart.screen.cart.view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -23,11 +24,7 @@ class _BottomBarState extends State<BottomBar> {
 
   List<Widget> pages = [
     const HomeScreen(),
-    Container(
-      child: Center(
-        child: Text("Account Screen"),
-      ),
-    ),
+    AccountScreen(),
     Container(
       child: Center(
         child: Text("Favorite Screen"),

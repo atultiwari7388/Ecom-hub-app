@@ -14,8 +14,6 @@ import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../home/screens/home.screen.home.view.dart';
-
 class AuthService {
   //create signup function
 
